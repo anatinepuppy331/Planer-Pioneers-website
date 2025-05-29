@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Climate Change Action Group</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+   
+    color: #2a3e4c;
+  }
+  header {
+    background-color: #31794d;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(255, 255, 255);
+    flex-wrap: wrap;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: default;
+  }
+  .logo img {
+    height: 50px;
+    margin-right: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+  .logo.editable {
+    cursor: pointer;
+  }
+  .logo.editable img:hover {
+    transform: scale(1.1);
+    outline: 2px dashed #fff;
+   
+  }
+  .logo h1 {
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  nav button:hover,
+  nav button.active {
+    background-color: #61b56a;
+    outline: none;
+  }
+  nav button[contenteditable="true"] {
+    min-width: 80px;
+    border-bottom: 1.5px solid #61b56a;
+    outline: none;
+  }
+  main {
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+  }
+  h2 {
+    margin-top: 0;
+    color: #31794d;
+    letter-spacing: 0.5px;
+  }
+  section {
+    display: none;
+  }
+  section.active {
+    display: block;
+  }
+  /* Progress report styles */
+  .progress-report p {
+    line-height: 1.6;
+    color: #3b4a57;
+    font-size: 1.1rem;
+  }
+  .progress-report img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  /* Editable content styling */
+  .progress-report[contenteditable="true"] {
+    border: 2px dashed #61b56a;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f0fff5;
+    min-height: 200px;
+    outline: none;
+  }
+  /* Save button styling */
+  .save-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #31794d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+  .save-btn:hover {
+    background-color: #2a653f;
+  }
+  /* Pledges styles */
+  .pledges {
+    font-size: 1.1rem;
+    color: #3b4a57;
+  }
+  .pledges-info strong {
+    color: #31794d;
+  }
+  footer {
+    text-align: center;
+    padding: 1rem;
+    color: #31794d;
+    font-size: 0.9rem;
+    border-top: 1px solid #c3e4c2;
+  }
+  /* Responsive */
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    nav {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  /* Admin control panel buttons */
+  #adminControls {
+    margin-top: 0.75rem;
+  }
+  #adminControls button {
+    background-color: #2a653f;
+    border: none;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: background-color 0.25s ease;
+  }
+  #adminControls button:hover {
+    background-color: #1f452a;
+  }
+  /* Donation form styling */
+  #donationForm {
+    margin-top: 1rem;
+    border: 2px solid #61b56a;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #f7fcf8;
+  }
+  #donationForm label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #31794d;
+  }
+  #donationForm input[type="text"],
+  #donationForm input[type="number"] {
+    width: 100%;
+    padding: 0.4rem;
+    margin-bottom: 0.8rem;
+    border: 1px solid #bbe0b7;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  #donationForm button {
+    background-color: #31794d;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+  #donationForm button:hover {
+    background-color: #2a653f;
+  }
+  #thankYouMessage {
+    margin-top: 1rem;
+    color: #31794d;
+    font-weight: 600;
+    display: none;
+  }
+  /* Notification styling */
+  #notification {
+    text-align: center;
+    color: #31794d;
+    font-weight: 600;
+    margin: 1rem 0;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" id="logoContainer" title="Climate Change Action Group Logo" tabindex="0" aria-label="Group Logo">
+    <img id="logoImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Globe_icon.svg/512px-Globe_icon.svg.png" alt="Group Logo" />
+    <h1 id="siteTitle">Climate Change Action</h1>
+  </div>
+  <nav aria-label="Primary">
+    <button class="active" data-tab="home" aria-controls="home" aria-selected="true" role="tab" tabindex="0">Home</button>
+    <button data-tab="progress" aria-controls="progress" role="tab" aria-selected="false" tabindex="0">Progress Report</button>
+    <button data-tab="pledges" aria-controls="pledges" role="tab" aria-selected="false" tabindex="0">Pledges</button>
+  </nav>
+  <div id="adminControls" aria-live="polite" aria-atomic="true">
+    <button id="adminLoginBtn" aria-label="Login as admin">Admin Login</button>
+    <button id="adminLogoutBtn" style="display:none" aria-label="Logout admin">Admin Logout</button>
+  </div>
+</header>
+<div id="notification" aria-live="polite"></div>
+<main>
+  <section id="home" class="active" role="tabpanel" tabindex="0" aria-hidden="false">
+    <h2>Welcome to the Climate Change Action Group</h2>
+    <p>
+      We are dedicated to raising awareness, driving impactful climate initiatives, and building a sustainable future together.
+    </p>
+    <p>
+      Our work focuses on education, advocacy, and community involvement. Explore our progress reports to see how far we've come and learn how you can pledge your support.
+    </p>
+  </section>
+  <section id="progress" class="progress-report" role="tabpanel" tabindex="-1" aria-hidden="true" spellcheck="true">
+    <h2 id="progressHeading">Progress Report</h2>
+    <div id="progressContent">
+      <p>
+        <strong>2024 Q1 Update:</strong> We have successfully planted over 5,000 trees, launched three community recycling programs, and hosted educational workshops reaching over 1,000 people.
+      </p>
+      <p>
+        Our renewable energy initiatives have reduced carbon footprint equivalent to removing 200 cars from the road annually.
+      </p>
+      <p>
+        Future plans include expanding our urban garden projects and partnering with local schools for sustainability programs.
+      </p>
+    </div>
+    <button class="save-btn" id="saveProgressBtn" aria-label="Save progress report content" style="display:none">Save Progress Report</button>
+    <button class="save-btn" id="insertImageBtn" aria-label="Insert image into progress report" style="display:none">Insert Image</button>
+  </section>
+  <section id="pledges" class="pledges-info" role="tabpanel" tabindex="-1" aria-hidden="true">
+    <h2>Make a Pledge</h2>
+    <p>
+      Your support drives real change! You can make a pledge or donation to support our projects.
+    </p>
+    <p>
+      <strong>Bank Details:</strong><br/>
+      Bank: Green Future Bank<br/>
+      Account Name: Climate Change Action Group<br/>
+      Account Number: 1234567890<br/>
+      IBAN: GB12 GRNB 3400 1234 5678 90<br/>
+      SWIFT/BIC: GRNBGB2L
+    </p>
+    <p>
+      We appreciate every contribution, big or small. Thank you for joining us in making a difference!
+    </p>
+    <div id="donationForm">
+      <form id="pledgeForm" aria-label="Donation form">
+        <label for="donorName">Name:</label>
+        <input type="text" id="donorName" name="donorName" placeholder="Your name" required />
+        <label for="donationAmount">Donation Amount (USD):</label>
+        <input type="number" id="donationAmount" name="donationAmount" placeholder="Amount" min="1" step="any" required />
+        <button type="submit">Submit Donation</button>
+      </form>
+      <div id="thankYouMessage" role="alert" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+<footer>
+  &copy; 2025 Planet Pioneers | Desire to inspire
+</footer>
+<script>
+  const navButtons = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('main section');
+  const logoContainer = document.getElementById('logoContainer');
+  const logoImage = document.getElementById('logoImage');
+  const siteTitle = document.getElementById('siteTitle');
+  const progressContent = document.getElementById('progressContent');
+  const saveProgressBtn = document.getElementById('saveProgressBtn');
+  const insertImageBtn = document.getElementById('insertImageBtn');
+
+  // Show/hide insert image button in admin mode
+  function setAdminMode(enabled) {
+    if (enabled) {
+      adminLoginBtn.style.display = 'none';
+      adminLogoutBtn.style.display = 'inline-block';
+
+      progressContent.setAttribute('contenteditable', 'true');
+      progressContent.style.border = '2px dashed #61b56a';
+      progressContent.style.backgroundColor = '#f0fff5';
+      progressContent.style.minHeight = '200px';
+      progressContent.style.padding = '1rem';
+      saveProgressBtn.style.display = 'inline-block';
+      insertImageBtn.style.display = 'inline-block'; // Show insert image button
+
+      setNavEditable(true);
+
+      logoContainer.classList.add('editable');
+      logoContainer.setAttribute('tabindex', '0');
+      logoContainer.setAttribute('aria-label', 'Click to change logo image');
+    } else {
+      adminLoginBtn.style.display = 'inline-block';
+      adminLogoutBtn.style.display = 'none';
+
+      progressContent.removeAttribute('contenteditable');
+      progressContent.style.border = 'none';
+      progressContent.style.backgroundColor = 'transparent';
+      progressContent.style.minHeight = '';
+      progressContent.style.padding = '';
+      saveProgressBtn.style.display = 'none';
+      insertImageBtn.style.display = 'none'; // Hide insert image button
+
+      setNavEditable(false);
+
+      logoContainer.classList.remove('editable');
+      logoContainer.removeAttribute('tabindex');
+      logoContainer.setAttribute('aria-label', 'Group Logo');
+    }
+  }
+
+  // Insert image at caret position in progressContent
+  insertImageBtn.addEventListener('click', () => {
+    const url = prompt('Enter image URL:');
+    if (url && url.trim() !== '') {
+      const img = document.createElement('img');
+      img.src = url.trim();
+      img.alt = 'Progress photo';
+      img.style.maxWidth = '100%';
+      img.style.display = 'block';
+      img.style.margin = '1rem 0';
+      // Insert at caret position
+      const sel = window.getSelection();
+      if (sel && sel.rangeCount > 0 && progressContent.contains(sel.anchorNode)) {
+        sel.getRangeAt(0).insertNode(img);
+      } else {
+        progressContent.appendChild(img);
+      }
+      showNotification('Image inserted. Don\'t forget to save!');
+    }
+  });
+
+  const ADMIN_PASSWORD = 'adminpass'; // Hardcoded password for demo
+
+  // Helper: Inline notification
+  function showNotification(msg, timeout = 2500) {
+    notification.textContent = msg;
+    notification.style.display = 'block';
+    if (timeout > 0) {
+      setTimeout(() => { notification.style.display = 'none'; }, timeout);
+    }
+  }
+
+  // Helper: Set all nav buttons editable or not
+  function setNavEditable(editable) {
+    navButtons.forEach(btn => {
+      if (editable) {
+        btn.setAttribute('contenteditable', 'true');
+        btn.setAttribute('spellcheck', 'false');
+        btn.setAttribute('aria-label', btn.textContent + ', editable');
+      } else {
+        btn.removeAttribute('contenteditable');
+        btn.removeAttribute('spellcheck');
+        btn.setAttribute('aria-label', btn.textContent);
+      }
+    });
+  }
+
+  // Load saved progress content from localStorage
+  function loadProgressContent() {
+    const saved = localStorage.getItem('progressReportContent');
+    if (saved) {
+      progressContent.innerHTML = saved;
+    }
+  }
+
+  // Save progress content to localStorage, with confirmation
+  function saveProgressContent() {
+    const content = progressContent.innerHTML;
+    if (!confirm('Overwrite the existing progress report?')) return;
+    localStorage.setItem('progressReportContent', content);
+    showNotification('Progress Report saved locally.');
+  }
+
+  // Load saved nav text from localStorage
+  function loadNavLabels() {
+    const savedLabels = JSON.parse(localStorage.getItem('navLabels'));
+    if (savedLabels && Array.isArray(savedLabels) && savedLabels.length === navButtons.length) {
+      navButtons.forEach((btn, i) => {
+        btn.textContent = savedLabels[i];
+        btn.setAttribute('aria-label', btn.textContent);
+      });
+    }
+  }
+
+  // Save nav labels to localStorage
+  function saveNavLabels() {
+    const labels = Array.from(navButtons).map(btn => btn.textContent.trim());
+    localStorage.setItem('navLabels', JSON.stringify(labels));
+  }
+
+  // Load saved logo src from localStorage
+  function loadLogoSrc() {
+    const savedSrc = localStorage.getItem('logoSrc');
+    if (savedSrc) {
+      logoImage.src = savedSrc;
+    }
+  }
+
+  // Admin mode toggle
+  function setAdminMode(enabled) {
+    if (enabled) {
+      adminLoginBtn.style.display = 'none';
+      adminLogoutBtn.style.display = 'inline-block';
+
+      progressContent.setAttribute('contenteditable', 'true');
+      progressContent.style.border = '2px dashed #61b56a';
+      progressContent.style.backgroundColor = '#f0fff5';
+      progressContent.style.minHeight = '200px';
+      progressContent.style.padding = '1rem';
+      saveProgressBtn.style.display = 'inline-block';
+      insertImageBtn.style.display = 'inline-block'; // Show insert image button
+
+      setNavEditable(true);
+
+      logoContainer.classList.add('editable');
+      logoContainer.setAttribute('tabindex', '0');
+      logoContainer.setAttribute('aria-label', 'Click to change logo image');
+    } else {
+      adminLoginBtn.style.display = 'inline-block';
+      adminLogoutBtn.style.display = 'none';
+
+      progressContent.removeAttribute('contenteditable');
+      progressContent.style.border = 'none';
+      progressContent.style.backgroundColor = 'transparent';
+      progressContent.style.minHeight = '';
+      progressContent.style.padding = '';
+      saveProgressBtn.style.display = 'none';
+      insertImageBtn.style.display = 'none'; // Hide insert image button
+
+      setNavEditable(false);
+
+      logoContainer.classList.remove('editable');
+      logoContainer.removeAttribute('tabindex');
+      logoContainer.setAttribute('aria-label', 'Group Logo');
+    }
+  }
+
+  // Save edits on nav button blur
+  function setupNavBlurSave() {
+    navButtons.forEach(btn => {
+      btn.addEventListener('blur', () => {
+        saveNavLabels();
+      });
+      btn.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          btn.blur();
+        }
+      });
+    });
+  }
+
+  // Tab functionality
+  navButtons.forEach(tab => {
+    tab.addEventListener('click', () => {
+      navButtons.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      sections.forEach(s => {
+        s.classList.remove('active');
+        s.setAttribute('aria-hidden', 'true');
+        s.setAttribute('tabindex', '-1');
+      });
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const target = tab.getAttribute('data-tab');
+      const targetSection = document.getElementById(target);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        targetSection.setAttribute('aria-hidden', 'false');
+        targetSection.setAttribute('tabindex', '0');
+        targetSection.focus();
+      }
+    });
+  });
+
+  // Handle save progress button
+  saveProgressBtn.addEventListener('click', () => {
+    saveProgressContent();
+  });
+
+  // Handle admin login click
+  adminLoginBtn.addEventListener('click', () => {
+    const pass = prompt('Enter admin password:');
+    if (pass === ADMIN_PASSWORD) {
+      setAdminMode(true);
+      loadProgressContent();
+      loadNavLabels();
+      loadLogoSrc();
+      showNotification('Admin mode enabled.');
+    } else if (pass !== null) {
+      showNotification('Incorrect password!');
+    }
+  });
+
+  // Handle admin logout
+  adminLogoutBtn.addEventListener('click', () => {
+    setAdminMode(false);
+    showNotification('Admin mode disabled.');
+  });
+
+  // Logo click to change image (only in admin mode)
+  logoContainer.addEventListener('click', () => {
+    if (adminLogoutBtn.style.display === 'inline-block') {
+      const newSrc = prompt('Enter new logo image URL:', logoImage.src);
+      if (newSrc && newSrc.trim() !== '') {
+        logoImage.src = newSrc.trim();
+        localStorage.setItem('logoSrc', newSrc.trim());
+        showNotification('Logo updated.');
+      }
+    }
+  });
+
+  // Keyboard accessible logo editing
+  logoContainer.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && adminLogoutBtn.style.display === 'inline-block') {
+      logoContainer.click();
+    }
+  });
+
+  // Donation form handling
+  donationForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = donationForm.donorName.value.trim();
+    const amount = parseFloat(donationForm.donationAmount.value);
+    if (!name || isNaN(amount) || amount <= 0) {
+      showNotification('Please provide valid name and donation amount.');
+      return;
+    }
+    thankYouMessage.textContent = `Thank you, ${name}, for your generous donation of $${amount.toFixed(2)}!`;
+    thankYouMessage.style.display = 'block';
+    showNotification('Donation submitted!');
+    donationForm.reset();
+  });
+
+  // On initialization
+  window.addEventListener('load', () => {
+    setAdminMode(false);
+    loadProgressContent();
+    loadNavLabels();
+    loadLogoSrc();
+    setupNavBlurSave();
+  });
+</script>
+</body>
+</html>
