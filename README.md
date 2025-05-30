@@ -1,39 +1,61 @@
 # Planet Pioneers
 
 ## Overview
-The "Planet Pioneers" application is designed to raise awareness about climate change and promote sustainable practices. It serves as a platform for users to learn about the organization's initiatives, track progress, and make pledges or donations to support environmental efforts.
-
-## Features
-- **Progress Reports**: Users can view updates on the organization's activities and achievements.
-- **Pledge System**: Users can make pledges or donations to support various projects.
-- **Admin Controls**: Admins can log in to edit content and manage the application.
+Planet Pioneers is a web application dedicated to raising awareness and driving impactful climate initiatives. The project consists of a backend built with Node.js and Express, and a frontend developed using HTML, CSS, and JavaScript.
 
 ## Project Structure
 ```
 planet-pioneers
-├── src
-│   └── index.html
-├── README.md
+├── backend
+│   ├── app.js                # Entry point for the backend application
+│   ├── routes                # Contains route definitions
+│   │   └── index.js          # API routes
+│   ├── controllers           # Contains business logic for routes
+│   │   └── index.js          # Controller functions
+│   ├── models                # Data models for the application
+│   │   └── index.js          # Mongoose models
+│   └── package.json          # NPM configuration file
+├── frontend
+│   ├── index.html            # Main HTML file for the frontend
+│   ├── styles.css            # Styles for the frontend application
+│   └── script.js             # JavaScript for handling user interactions
+└── README.md                 # Project documentation
 ```
 
-## Setup Instructions
-1. **Clone the Repository**: 
+## Getting Started
+
+### Prerequisites
+- Node.js (version 14 or higher)
+- MongoDB (for database)
+
+### Installation
+1. Clone the repository:
    ```
-   git clone <repository-url>
+   git clone https://github.com/yourusername/planet-pioneers.git
    ```
-2. **Navigate to the Project Directory**:
+2. Navigate to the backend directory:
    ```
-   cd planet-pioneers
+   cd planet-pioneers/backend
    ```
-3. **Open the Application**: Open `src/index.html` in a web browser to view the application.
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+
+### Running the Application
+1. Start the backend server:
+   ```
+   node app.js
+   ```
+2. Open the frontend in your browser:
+   - Open `frontend/index.html` in your preferred web browser.
 
 ## Usage
-- Navigate through the application using the buttons in the header.
-- Admins can log in using the provided credentials to edit content.
-- Users can submit donations through the donation form.
+- The application allows users to make pledges and donations to support climate initiatives.
+- Users can view progress reports and updates on the initiatives.
 
 ## Contributing
-Contributions are welcome! Please submit a pull request or open an issue for any suggestions or improvements.
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or features.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the LICENSE file for details.
