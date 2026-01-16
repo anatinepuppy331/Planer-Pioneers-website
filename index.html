@@ -5,80 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planet Pioneers</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <div class="logo" id="logoContainer" title="Planet Pioneers Logo" tabindex="0" aria-label="Group Logo">
-            <img id="logoImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Globe_icon.svg/512px-Globe_icon.svg.png" alt="Group Logo" />
-            <h1 id="siteTitle">Planet Pioneers</h1>
-        </div>
-        <nav aria-label="Primary">
-            <button class="active" data-tab="home" aria-controls="home" aria-selected="true" role="tab" tabindex="0">Home</button>
-            <button data-tab="progress" aria-controls="progress" role="tab" aria-selected="false" tabindex="0">Progress Report</button>
-            <button data-tab="pledges" aria-controls="pledges" role="tab" aria-selected="false" tabindex="0">Pledges</button>
+        <h1>Welcome to Planet Pioneers</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#progress">Progress Report</a></li>
+                <li><a href="#pledges">Pledges</a></li>
+            </ul>
         </nav>
-        <div id="adminControls" aria-live="polite" aria-atomic="true">
-            <button id="adminLoginBtn" aria-label="Login as admin">Admin Login</button>
-            <button id="adminLogoutBtn" style="display:none" aria-label="Logout admin">Admin Logout</button>
-        </div>
     </header>
-    <div id="notification" aria-live="polite"></div>
     <main>
-        <section id="home" class="active" role="tabpanel" tabindex="0" aria-hidden="false">
-            <h2>Welcome to Planet Pioneers</h2>
-            <p>
-                We are dedicated to raising awareness, driving impactful climate initiatives, and building a sustainable future together.
-            </p>
-            <p>
-                Our work focuses on education, advocacy, and community involvement. Explore our progress reports to see how far we've come and learn how you can pledge your support.
-            </p>
+        <section id="home">
+            <h2>Home</h2>
+            <p>Join us in our mission to combat climate change and promote sustainability.</p>
         </section>
-        <section id="progress" class="progress-report" role="tabpanel" tabindex="-1" aria-hidden="true" spellcheck="true">
-            <h2 id="progressHeading">Progress Report</h2>
-            <div id="progressContent">
-                <p>
-                    <strong>2024 Q1 Update:</strong> We have successfully planted over 5,000 trees, launched three community recycling programs, and hosted educational workshops reaching over 1,000 people.
-                </p>
-                <p>
-                    Our renewable energy initiatives have reduced carbon footprint equivalent to removing 200 cars from the road annually.
-                </p>
-                <p>
-                    Future plans include expanding our urban garden projects and partnering with local schools for sustainability programs.
-                </p>
-            </div>
-            <button class="save-btn" id="saveProgressBtn" aria-label="Save progress report content" style="display:none">Save Progress Report</button>
+        <section id="progress">
+            <h2>Progress Report</h2>
+            <p>Check out our latest updates and achievements in the fight against climate change.</p>
         </section>
-        <section id="pledges" class="pledges-info" role="tabpanel" tabindex="-1" aria-hidden="true">
+        <section id="pledges">
             <h2>Make a Pledge</h2>
-            <p>
-                Your support drives real change! You can make a pledge or donation to support our projects.
-            </p>
-            <p>
-                <strong>Bank Details:</strong><br/>
-                Bank: Green Future Bank<br/>
-                Account Name: Planet Pioneers<br/>
-                Account Number: 1234567890<br/>
-                IBAN: GB12 GRNB 3400 1234 5678 90<br/>
-                SWIFT/BIC: GRNBGB2L
-            </p>
-            <p>
-                We appreciate every contribution, big or small. Thank you for joining us in making a difference!
-            </p>
-            <div id="donationForm">
-                <form id="pledgeForm" aria-label="Donation form">
-                    <label for="donorName">Name:</label>
-                    <input type="text" id="donorName" name="donorName" placeholder="Your name" required />
-                    <label for="donationAmount">Donation Amount (USD):</label>
-                    <input type="number" id="donationAmount" name="donationAmount" placeholder="Amount" min="1" step="any" required />
-                    <button type="submit">Submit Donation</button>
-                </form>
-                <div id="thankYouMessage" role="alert" aria-live="polite"></div>
-            </div>
+            <p>Your support is crucial! Consider making a pledge to help our initiatives.</p>
         </section>
     </main>
     <footer>
-        &copy; 2025 Planet Pioneers | Desire to inspire
+        <p>&copy; 2025 Planet Pioneers | All rights reserved.</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
